@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "0af85a7d-8082-4810-9c1c-157e99505e74",
+		"name": "client API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37562094"
+	},
+	"item": [
+		{
+			"name": "crear cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Federico\",\r\n  \"lastName\": \"Perrone\",\r\n  \"age\": 32,\r\n  \"birthday\": \"1991-09-14\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/clientes/creacliente",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"creacliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar clientes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/clientes/listclientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"listclientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "kpi de clientes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/clientes/kpideclientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"kpideclientes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
