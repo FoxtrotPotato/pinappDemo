@@ -1,0 +1,8 @@
+# Usa una imagen base con Java
+FROM openjdk:17-jdk-slim
+
+# Copia el archivo JAR de la aplicación al contenedor
+COPY target/mi-aplicacion.jar /app/mi-aplicacion.jar
+
+# Establece el punto de entrada
+ENTRYPOINT ["java", "-jar", "/app/mi-aplicacion.jar"]

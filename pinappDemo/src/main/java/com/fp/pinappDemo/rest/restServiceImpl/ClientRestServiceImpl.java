@@ -1,5 +1,6 @@
 package com.fp.pinappDemo.rest.restServiceImpl;
 
+import com.fp.pinappDemo.dto.ClientDTO;
 import com.fp.pinappDemo.entity.AgeStatistics;
 import com.fp.pinappDemo.entity.Client;
 import com.fp.pinappDemo.repository.ClientRepository;
@@ -7,7 +8,10 @@ import com.fp.pinappDemo.rest.restService.ClientRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientRestServiceImpl implements ClientRestService {
@@ -17,11 +21,6 @@ public class ClientRestServiceImpl implements ClientRestService {
 
     public ClientRestServiceImpl(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
-    }
-
-    @Override
-    public List<Client> findAll() {
-        return clientRepository.findAllByOrderByLastNameAsc();
     }
 
     public Client createClient(Client theClient) {
@@ -43,6 +42,34 @@ public class ClientRestServiceImpl implements ClientRestService {
                 .orElse(0));
 
         return new AgeStatistics(averageAge, standardDeviation);
+    }
+
+    private Date calculateDeathDate(Date birthday, int age) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(birthday);
+
+        int yearsToAdd = 100 - age;
+        calendar.add(Calendar.YEAR, yearsToAdd);
+
+        Date deathDate = calendar.getTime();
+        System.out.println("Calculated death date: " + deathDate);
+
+        return deathDate;
+    }
+
+    @Override
+    public List<ClientDTO> findAll() {
+        List<Client> clientsList = clientRepository.findAllByOrderByLastNameAsc();
+        return clientsList.stream()
+                .map(client -> new ClientDTO(
+                        client.getClientId(),
+                        client.getFirstName(),
+                        client.getLastName(),
+                        client.getAge(),
+                        client.getBirthday(),
+                        calculateDeathDate(client.getBirthday(), client.getAge())
+                ))
+                .collect(Collectors.toList());
     }
 
 

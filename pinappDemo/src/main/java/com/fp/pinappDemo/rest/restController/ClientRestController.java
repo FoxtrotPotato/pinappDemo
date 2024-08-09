@@ -1,5 +1,6 @@
 package com.fp.pinappDemo.rest.restController;
 
+import com.fp.pinappDemo.dto.ClientDTO;
 import com.fp.pinappDemo.entity.AgeStatistics;
 import com.fp.pinappDemo.entity.Client;
 import com.fp.pinappDemo.rest.restService.ClientRestService;
@@ -28,8 +29,8 @@ public class ClientRestController {
 
     @GetMapping("/listclientes")
     @Operation(summary = "Obtener listado de clientes", description = "Obtiene un listado de clientes ordenados alfabéticamente por apellido")
-    public ResponseEntity<List<Client>> listClients() {
-        List<Client> clientsList = clientRestService.findAll();
+    public ResponseEntity<List<ClientDTO>> listClients() {
+        List<ClientDTO> clientsList = clientRestService.findAll();
         if (clientsList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
