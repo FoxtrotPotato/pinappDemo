@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.fp</groupId>
 	<artifactId>pinappDemo</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.5</version>
 	<name>pinappDemo</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
